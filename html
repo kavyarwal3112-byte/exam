@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing – Long Answer Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --paper: #f7f3ec;
+    --accent: #b5451b;
+    --accent2: #2a5c8a;
+    --rule: #d4c9b5;
+    --muted: #7a6e62;
+    --highlight: #fdf4e3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 15.5px;
+    line-height: 1.85;
+  }
+
+  /* Cover */
+  .cover {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 60px 48px 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.08);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 200px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .cover-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 6vw, 54px);
+    line-height: 1.1;
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+  .cover h1 span { color: var(--accent); }
+  .cover-sub {
+    font-size: 14px;
+    color: rgba(247,243,236,0.55);
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 36px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .meta-pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 6px 16px;
+    border-radius: 2px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(247,243,236,0.7);
+  }
+
+  /* TOC */
+  .toc {
+    padding: 48px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--highlight);
+  }
+  .toc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 4px 32px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 5px 0;
+    border-bottom: 1px dotted var(--rule);
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 13.5px;
+    transition: color 0.2s;
+  }
+  .toc-item:hover { color: var(--accent); }
+  .toc-num {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--accent);
+    min-width: 22px;
+    letter-spacing: 1px;
+  }
+
+  /* Main */
+  .main { max-width: 860px; margin: 0 auto; padding: 0 48px 80px; }
+
+  /* Question block */
+  .q-block {
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 2px solid var(--ink);
+  }
+  .q-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+  .q-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--rule);
+    min-width: 56px;
+    text-align: right;
+    padding-top: 4px;
+  }
+  .q-title-wrap {}
+  .q-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .q-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .marks-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    margin-top: 8px;
+    font-weight: 600;
+  }
+
+  /* Answer content */
+  .answer { font-weight: 300; }
+
+  .intro {
+    font-style: italic;
+    color: var(--muted);
+    border-left: 3px solid var(--accent);
+    padding: 12px 20px;
+    margin-bottom: 24px;
+    background: var(--highlight);
+    font-size: 14.5px;
+  }
+
+  .section-head {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent2);
+    margin: 28px 0 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--rule);
+    letter-spacing: 0.3px;
+  }
+
+  .point-list {
+    list-style: none;
+    margin: 12px 0 20px;
+  }
+  .point-list li {
+    padding: 8px 0 8px 24px;
+    position: relative;
+    border-bottom: 1px dotted var(--rule);
+    font-size: 14.5px;
+  }
+  .point-list li:last-child { border-bottom: none; }
+  .point-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+    top: 10px;
+  }
+  .point-list li strong {
+    color: var(--ink);
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .numbered-list {
+    counter-reset: nl;
+    list-style: none;
+    margin: 12px 0 20px;
+  }
+  .numbered-list li {
+    counter-increment: nl;
+    padding: 10px 0 10px 36px;
+    position: relative;
+    border-bottom: 1px dotted var(--rule);
+    font-size: 14.5px;
+  }
+  .numbered-list li:last-child { border-bottom: none; }
+  .numbered-list li::before {
+    content: counter(nl, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent);
+    top: 13px;
+    letter-spacing: 1px;
+  }
+  .numbered-list li strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .def-box {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 18px 24px;
+    margin: 20px 0;
+    border-radius: 0;
+    position: relative;
+  }
+  .def-box::before {
+    content: 'DEFINITION';
+    display: block;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .def-box p { font-size: 14px; line-height: 1.7; font-weight: 300; }
+
+  p.body-para {
+    margin-bottom: 14px;
+    font-size: 14.5px;
+  }
+
+  .conclusion {
+    background: var(--highlight);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent2);
+    padding: 14px 20px;
+    margin-top: 24px;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--muted);
+  }
+  .conclusion::before {
+    content: 'CONCLUSION — ';
+    font-style: normal;
+    font-weight: 700;
+    color: var(--accent2);
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  /* Diagram-style table */
+  .stage-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 13.5px;
+  }
+  .stage-table th {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 9px 14px;
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .stage-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .stage-table tr:nth-child(even) td { background: var(--highlight); }
+  .stage-table td:first-child { font-weight: 600; color: var(--accent); white-space: nowrap; }
+
+  /* Page break hint */
+  @media print {
+    .q-block { page-break-before: always; }
+    .cover, .toc { page-break-after: always; }
+  }
+
+  /* Scroll indicator */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: var(--accent);
+    width: 0%;
+    transition: width 0.1s;
+    z-index: 999;
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="pb"></div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-label">Exam Preparation · Long Answer Series</div>
+  <h1>Principles of<br><span>Marketing</span></h1>
+  <div class="cover-sub">Comprehensive 14-Mark Answer Guide · All 13 Questions</div>
+  <div class="cover-meta">
+    <span class="meta-pill">13 Questions</span>
+    <span class="meta-pill">14 Marks Each</span>
+    <span class="meta-pill">Exam Ready</span>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-title">Contents</div>
+  <div class="toc-grid">
+    <a href="#q1" class="toc-item"><span class="toc-num">01</span>Market-Oriented Approach</a>
+    <a href="#q2" class="toc-item"><span class="toc-num">02</span>Social Orientation Concept</a>
+    <a href="#q3" class="toc-item"><span class="toc-num">03</span>Marketing Management & Scope</a>
+    <a href="#q4" class="toc-item"><span class="toc-num">04</span>Online Retail Marketing</a>
+    <a href="#q5" class="toc-item"><span class="toc-num">05</span>Elements of Marketing Mix</a>
+    <a href="#q6" class="toc-item"><span class="toc-num">06</span>Market Environment Factors</a>
+    <a href="#q7" class="toc-item"><span class="toc-num">07</span>Need for New Product Development</a>
+    <a href="#q8" class="toc-item"><span class="toc-num">08</span>Product Life Cycle & Stages</a>
+    <a href="#q9" class="toc-item"><span class="toc-num">09</span>Components of Promotion Mix</a>
+    <a href="#q10" class="toc-item"><span class="toc-num">10</span>Demographic Bases of Segmentation</a>
+    <a href="#q11" class="toc-item"><span class="toc-num">11</span>Market Segmentation & Benefits</a>
+    <a href="#q12" class="toc-item"><span class="toc-num">12</span>Importance of Market Research</a>
+    <a href="#q13" class="toc-item"><span class="toc-num">13</span>Marketing Control & Process</a>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- Q1 -->
+<div class="q-block" id="q1">
+  <div class="q-header">
+    <div class="q-num">01</div>
+    <div class="q-title-wrap">
+      <div class="q-label">Question 1</div>
+      <div class="q-title">Explain the Market-Oriented Approach</div>
+      <span class="marks-badge">14 Marks</span>
+    </div>
+  </div>
+  <div class="answer">
+    <div class="def-box"><p>The Market-Oriented Approach is a business philosophy that places the customer at the centre of all organisational decisions. A firm adopting this approach focuses on identifying, understanding, and satisfying customer needs more effectively than its competitors.</p></div>
+
+    <div class="section-head">Meaning & Concept</div>
+    <p class="body-para">A market-oriented organisation continuously gathers intelligence about customers, competitors, and market trends, and then uses that information to design products, set prices, choose distribution channels, and craft promotional messages. The entire organisation — not just the marketing department — becomes customer-focused.</p>
+    <p class="body-para">It differs from the product orientation (which focuses on what the firm can produce) and the sales orientation (which focuses on pushing products), because it starts with the market and works backward to the factory.</p>
+
+    <div class="section-head">Key Features</div>
+    <ul class="point-list">
+      <li><strong>Customer Focus:</strong> Decisions are driven by customer needs, wants, and preferences rather than production convenience.</li>
+      <li><strong>Competitor Awareness:</strong> The firm continuously monitors competitor strategies to maintain a competitive edge.</li>
+      <li><strong>Inter-functional Coordination:</strong> All departments — R&D, production, finance, and marketing — work together toward the common goal of customer satisfaction.</li>
+      <li><strong>Proactive Approach:</strong> Firms anticipate future market needs rather than merely reacting to present ones.</li>
+      <li><strong>Long-term Profitability:</strong> Profit is achieved through sustained customer satisfaction and loyalty, not short-term sales push.</li>
+      <li><strong>Market Intelligence:</strong> Regular collection and sharing of market data across the organisation is a core practice.</li>
+    </ul>
+
+    <div class="section-head">Components of Market Orientation</div>
+    <ul class="numbered-list">
+      <li><strong>Customer Orientation:</strong> Understanding target customers deeply enough to create superior value for them continuously.</li>
+      <li><strong>Competitor Orientation:</strong> Awareness of the strengths, weaknesses, strategies, and capabilities of both current and potential competitors.</li>
+      <li><strong>Interfunctional Coordination:</strong> Using firm resources in a coordinated effort to create superior value for customers.</li>
+      <li><strong>Intelligence Generation:</strong> Systematic research and collection of information about the market environment.</li>
+      <li><strong>Intelligence Dissemination:</strong> Sharing market information across all departments for informed decision-making.</li>
+      <li><strong>Responsiveness:</strong> Taking action in response to gathered intelligence, including selecting target markets and designing offerings.</li>
+    </ul>
+
+    <div class="section-head">Advantages of Market-Oriented Approach</div>
+    <ul class="point-list">
+      <li><strong>Better Customer Satisfaction:</strong> Products and services closely match customer expectations, resulting in higher satisfaction.</li>
+      <li><strong>Stronger Brand Loyalty:</strong> Satisfied customers become repeat buyers and brand advocates.</li>
+      <li><strong>Sustainable Competitive Advantage:</strong> Deep market knowledge enables firms to differentiate effectively.</li>
+      <li><strong>Reduced Risk:</strong> Market research before product launch reduces the risk of failure.</li>
+      <li><strong>Innovation-Driven Growth:</strong> Constant interaction with customers sparks meaningful product innovation.</li>
+    </ul>
+
+    <div class="section-head">Limitations</div>
+    <ul class="point-list">
+      <li>Can be expensive due to continuous market research requirements.</li>
+      <li>May lead to short-term thinking if too focused on immediate customer desires.</li>
+      <li>Risk of ignoring breakthrough innovations that customers may not yet know they need.</li>
+    </ul>
+
+    <div class="conclusion">The market-oriented approach is considered the most effective business philosophy in modern competitive markets, as it builds long-term relationships with customers, improves profitability, and ensures that the firm remains relevant and adaptive in a dynamic environment.</div>
+  </div>
+</div>
+
+<!-- Q2 -->
+<div class="q-block" id="q2">
+  <div class="q-header">
+    <div class="q-num">02</div>
+    <div class="q-title-wrap">
+      <div class="q-label">Question 2</div>
+      <div class="q-title">Explain the Social Orientation Concept of Marketing</div>
+      <span class="marks-badge">14 Marks</span>
+    </div>
+  </div>
+  <div class="answer">
+    <div class="def-box"><p>The Social Orientation Concept (also called the Societal Marketing Concept) holds that a firm should satisfy customer needs and wants while also considering the long-term interests of society as a whole. It goes beyond individual customer satisfaction to include social welfare and ethical responsibility.</p></div>
+
+    <div class="section-head">Meaning & Background</div>
+    <p class="body-para">Proposed by Philip Kotler, the societal marketing concept emerged as a response to growing criticism that the traditional marketing concept, by focusing only on individual customer satisfaction, ignored problems like environmental pollution, resource depletion, and public health. It is the most evolved of all marketing orientations.</p>
+    <p class="body-para">The concept is built on the premise that firms must balance three considerations: company profits, consumer wants, and society's interests. It introduces a moral and ethical dimension into marketing strategy.</p>
+
+    <div class="section-head">Core Philosophy — The Three Circles</div>
+    <ul class="point-list">
+      <li><strong>Consumer Wants:</strong> Short-term desires and immediate satisfaction of individual buyers.</li>
+      <li><strong>Consumer Long-run Welfare:</strong> The actual long-term wellbeing of the consumer, which may differ from immediate wants (e.g., a consumer may want cigarettes, but their welfare demands otherwise).</li>
+      <li><strong>Society's Long-run Welfare:</strong> Protecting the environment, preserving resources, and promoting the general public good.</li>
+    </ul>
+
+    <div class="section-head">Key Features</div>
+    <ul class="point-list">
+      <li><strong>Ethical Responsibility:</strong> Firms must conduct business in a way that is morally and socially responsible.</li>
+      <li><strong>Sustainable Marketing:</strong> Marketing decisions must consider ecological sustainability and resource conservation.</li>
+      <li><strong>Balancing Act:</strong> Balancing profit, customer satisfaction, and social good is the central challenge.</li>
+      <li><strong>Long-term Focus:</strong> Decisions are evaluated not just on short-term financial returns but on long-term social impact.</li>
+      <li><strong>Corporate Social Responsibility (CSR):</strong> CSR is a natural extension of this concept.</li>
+    </ul>
+
+    <div class="section-head">Types of Marketing Under Social Orientation</div>
+    <ul class="numbered-list">
+      <li><strong>Green Marketing:</strong> Promoting eco-friendly products and practices to protect the environment.</li>
+      <li><strong>Cause-Related Marketing:</strong> Linking commercial activities to social causes (e.g., a brand donating a portion of profits to charity).</li>
+      <li><strong>Social Marketing:</strong> Using marketing techniques to promote beneficial social behaviour (e.g., health campaigns, anti-drug drives).</li>
+      <li><strong>Ethical Marketing:</strong> Ensuring honesty, fairness, and transparency in all marketing communications and practices.</li>
+    </ul>
+
+    <div class="section-head">Examples in Practice</div>
+    <ul class="point-list">
+      <li>Companies using biodegradable packaging to reduce plastic waste.</li>
+      <li>Firms reducing carbon emissions and obtaining green certifications.</li>
+      <li>Brands running awareness campaigns on nutrition, mental health, or literacy.</li>
+      <li>Avoiding deceptive advertising and protecting consumer data and privacy.</li>
+    </ul>
+
+    <div class="section-head">Importance</div>
+    <ul class="point-list">
+      <li>Builds a positive brand image and long-term customer trust.</li>
+      <li>Attracts socially conscious consumers who prefer ethical brands.</li>
+      <li>Helps firms comply with regulatory requirements and avoid legal issues.</li>
+      <li>Contributes to sustainable development and national wellbeing.</li>
+      <li>Differentiates the firm from less responsible competitors.</li>
+    </ul>
+
+    <div class="conclusion">The Social Orientation Concept represents the highest form of marketing evolution, recognising that businesses exist within a society and have a responsibility to enrich it. By balancing customer satisfaction, company profitability, and societal welfare, firms adopting this concept ensure sustainable long-term success.</div>
+  </div>
+</div>
+
+<!-- Q3 -->
+<div class="q-block" id="q3">
+  <div class="q-header">
+    <div class="q-num">03</div>
+    <div class="q-title-wrap">
+      <div class="q-label">Question 3</div>
+      <div class="q-title">What is Marketing Management? Explain its Scope.</div>
+      <span class="marks-badge">14 Marks</span>
+    </div>
+  </div>
+  <div class="answer">
+    <div class="def-box"><p>Marketing Management is the process of planning, organising, implementing, and controlling marketing activities to achieve the organisation's goals by satisfying target customer needs profitably. It involves analysing market opportunities, selecting target markets, developing strategies, and managing the marketing mix.</p></div>
+
+    <div class="section-head">Meaning & Definition</div>
+    <p class="body-para">According to Philip Kotler, "Marketing Manage
